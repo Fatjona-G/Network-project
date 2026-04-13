@@ -23,7 +23,7 @@ function readFile(socket, filename) {
             socket.write("File nuk u gjet");
             return;
         }
-        socket.write("PËRMBAJTJA E FILE-IT:\n" + data);
+        socket.write("PERMBAJTJA E FILE-IT:\n" + data);
     });
 }
 
@@ -51,10 +51,10 @@ function fileInfo(socket, filename) {
         }
 
         socket.write(
-            `INFORMACIONI I FILE-IT:
-Madhësia: ${stats.size} bytes
-Krijuar: ${stats.birthtime}
-Modifikuar: ${stats.mtime}`
+            "INFORMACIONI I FILE-IT:\n" +
+            "Madhesia: " + stats.size + " bytes\n" +
+            "Krijuar: " + stats.birthtime + "\n" +
+            "Modifikuar: " + stats.mtime
         );
     });
 }
@@ -70,9 +70,9 @@ function searchFile(socket, keyword) {
         const result = files.filter(file => file.includes(keyword));
 
         if (result.length === 0) {
-            socket.write("Nuk u gjet asnjë file me këtë fjalë");
+            socket.write("Nuk u gjet asnje file me kete fjale");
         } else {
-            socket.write("REZULTATET E KËRKIMIT:\n" + result.join("\n"));
+            socket.write("REZULTATET E KERKIMIT:\n" + result.join("\n"));
         }
     });
 }
